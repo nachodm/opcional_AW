@@ -57,4 +57,36 @@ class DAOTasks{
             });
         });
     }
+
+    markTaskDone(idTask, callback){
+        this.pool.getConnection((err, conn)=>{
+            if(err){
+                callback("Error de conexion a la BBDD");
+            }
+            conn.query("UPDATE task SET done = true WHERE id = ?",[idTask], (err) =>{
+                conn.release();
+                if(err){
+                    callback("Error de acceso a la BBDD");
+                }
+                else callback(undefined, true);
+            })
+        })
+    }
+
+    deleteCompleted(email, callback){
+        this.pool.getConnection((err, conn)=>{
+            if(err){
+                callback("Error de conexion a la BBDD", false);
+            }
+            conn.query("DELETE ON CASCADE FROM user u JOIN task t ON u.email = t.user WHERE u.email = ? AND t.done = true", [email], (err)=>{
+                conn.release();
+                if(err){
+                    callback("Error de acceso a la BBDD", false);
+                }
+                else{
+                    callback(undefined, true);
+                }
+            })
+        })
+    }
 }
