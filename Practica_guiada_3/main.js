@@ -2,8 +2,8 @@
 
 const mysql = require("mysql");
 const config = require("./config");
-const DAOUsers = require("./DAOUsers");
-const DAOTasks = require("./DAOTasks");
+const DAOUsers = require("./Public/js/DAOUsers");
+const DAOTasks = require("./Public/js/DAOTasks");
 
 // Crear el pool de conexiones
 const pool = mysql.createPool({

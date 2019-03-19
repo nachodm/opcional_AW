@@ -12,18 +12,21 @@ class DAOUsers{
 
 
     isUserCorrect(email, password, callback){
+       
         this.pool.getConnection((err, conn)=>{
             if(err){
                 callback("Error de conexion con la BBDD", undefined);
             }
-            conn.query("SELECT email, password FROM users WHERE email = ? AND password = ?"),
-            [email, password], (err, row)=>{
+            
+            conn.query("SELECT email, password FROM user WHERE email = ? AND password = ?"),
+            [email, password], (err)=>{
+                console.log("entro");
                 conn.release();
                 if(err){
                     callback("Error de acceso a la BBDD", undefined);
                 }
-                if (row.length > 0) callback(undefined, true);
-                else callback(undefined , false);
+                if (row.length > 0) callback(null, true);
+                else callback(null , false);
             }
         });
     }

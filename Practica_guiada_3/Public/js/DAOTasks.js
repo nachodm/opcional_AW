@@ -22,15 +22,7 @@ class DAOTasks{
                     callback("Error de acceso a la BBDD");
                 }
                 var arrayResponse = [];
-                rows.forEach(p => {
-                    var object = {
-                        id = p.id,
-                        text = p.text,
-                        done = p.done,
-                        tags = p.tags
-                    }
-                    arrayResponse.push(object);
-                });
+                
             });
         })
     }
@@ -90,3 +82,5 @@ class DAOTasks{
         })
     }
 }
+
+module.exports = DAOTasks;
