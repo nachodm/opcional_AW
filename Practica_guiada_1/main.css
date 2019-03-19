@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Sniglet');
+@import url('https://fonts.googleapis.com/css?family=Margarine');
+
+*{
+    font-family: 'Sniglet', cursive;
+    top: 0;
+    margin: 0;
+}
+
+.nav{
+    
+    position: fixed;
+    z-index: 1000000;
+    width: 100%;
+    display:flex;
+    background-color: #c1c5c1;
+    flex-basis: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.left{
+    margin-top: 0px;
+    width: 70%;
+    text-align: center;
+}
+
+h1{
+    font-size: 60px;
+    color:red;
+    font-family: 'Margarine', cursive !important;
+}
+
+.right{
+    width: 30%;
+}
+
+.ident{
+    display: flex;
+    flex-direction: row;
+}
+
+.ideLeft{
+    
+    width: 25%;
+}
+
+.ideRight{
+    width: 75%;
+    text-align: center;
+}
+
+img{
+    width: 130px;
+    height: 130px;
+    margin-top: 5px;
+    margin-left: 50px;
+}
+
+h2{
+    font-size: 35px;
+    margin-top: 20px;
+}
+h3{
+    margin-top: 15px;
+    font-size: 25px;
+}
+
+a:hover{
+    cursor: pointer;
+    color: red;
+}
