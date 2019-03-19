@@ -1,0 +1,27 @@
+
+.nav{
+    display: none;
+}
+
+button{
+    display: none;
+}
+
+.li{
+    display: flex;
+    flex-direction: row;
+}
+
+.tags{
+    display: flex;
+    flex-direction: row;
+}
+ul{
+    list-style-type: disc;
+}
+
+
+
+form{
+    display:none;
+}
