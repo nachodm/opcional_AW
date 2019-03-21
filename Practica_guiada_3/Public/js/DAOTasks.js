@@ -23,6 +23,17 @@ class DAOTasks{
                 }
                 var arrayResponse = [];
                 
+                rows.forEach(p => {
+                    var object = {
+                        id : p.id,
+                        text: p.text,
+                        done: p.done,
+                        tag: p.tag
+                    };
+                    arrayResponse.push(object);
+                });
+                callback(undefined, arrayResponse);
+                
             });
         })
     }
@@ -34,14 +45,15 @@ class DAOTasks{
             }
             conn.query("INSERT INTO task (user, text, done) VALUES (?,?,?)", 
             [email, task.text, task.done], (err, row)=>{
-                conn.release();
+               
                 if(err){
                     callback("Error de acceso a la BBDD");
                 }
-                conn.query("INSERT INTO tag (tag) VALUES (?)", [task.tag],
+                conn.query("INSERT INTO tag (taskId, tag) VALUES (?,?)", [row.insertId, task.tag],
                 (err) =>{
                     conn.release();
                     if(err){
+                        
                         callback(undefined, false);
                     }
                     else callback(undefined, true);
@@ -70,7 +82,7 @@ class DAOTasks{
             if(err){
                 callback("Error de conexion a la BBDD", false);
             }
-            conn.query("DELETE ON CASCADE FROM user u JOIN task t ON u.email = t.user WHERE u.email = ? AND t.done = true", [email], (err)=>{
+            conn.query("DELETE FROM task WHERE user = ? AND done = 1", [email], (err)=>{
                 conn.release();
                 if(err){
                     callback("Error de acceso a la BBDD", false);

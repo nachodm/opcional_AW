@@ -1,8 +1,17 @@
-"use strict";
+"use strict"
 
 module.exports = {
+
+      // Ordenador que ejecuta el SGBD
       host: "localhost",
-      user: "root",   
-      password: "",  
-      database: "tareas"  
-}
+      
+      // Usuario que accede a la BD
+      user: "root",
+      
+      // Contraseña con la que se accede a la BD
+      password: "",
+      
+      // Nombre de la base de datos
+      database: "tareas"
+    
+    }

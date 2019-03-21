@@ -17,17 +17,17 @@ class DAOUsers{
             if(err){
                 callback("Error de conexion con la BBDD", undefined);
             }
-            
-            conn.query("SELECT email, password FROM user WHERE email = ? AND password = ?"),
-            [email, password], (err)=>{
-                console.log("entro");
+      
+            conn.query("SELECT email, password FROM user WHERE email = ? AND password = ?",
+            [email, password], (err, row)=>{
+                
                 conn.release();
                 if(err){
                     callback("Error de acceso a la BBDD", undefined);
                 }
                 if (row.length > 0) callback(null, true);
                 else callback(null , false);
-            }
+            });
         });
     }
 
@@ -36,15 +36,18 @@ class DAOUsers{
             if(err){
                 callback("Error de conexion con la BBDD", undefined);
             }
-            conn.query("SELECT img FROM users WHERE email = ?", [email], (err, row)=>{
+            conn.query("SELECT img FROM user WHERE email = ?", [email], (err, row)=>{
                 conn.release();
                 if(err){
                     callback("Error de acceso a la BBDD");
                 }
-                else callback(undefined, row[0]);
+                else {
+                    callback(undefined, row[0]);
+                }
             });
         });
     }
+
 }
 
 module.exports = DAOUsers;
