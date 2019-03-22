@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const session = require("express-session");
 const mysqlSession = require("express-mysql-session");
 const DaoUsers = require("./public/js/DAOUsers");
+const DaoTask = require("./public/js/DAOTasks");
 
 const MySQLStore = mysqlSession(session);
 const sessionStore = new MySQLStore({
@@ -33,6 +34,7 @@ const middlewareSession = session({
 });
 
 const daouser = new DaoUsers(pool);
+const daotask = new DaoTask(pool);
 
 var app = express();
 
@@ -47,35 +49,82 @@ app.set("view engine", "ejs");
 
 app.set("views", path.join(__dirname, "public/views"));
 
-app.get("/", (request, response)=>{
-    
-    response.render("login", {errorMSG: null});
+app.get("/login", (request, response) => {
+
+    response.render("login", { errorMSG: null });
 })
 
-app.post("/login", (request, response)=>{
-   
-    request.checkBody("email","Dirección de correo no válida").isEmail();
-    request.getValidationResult().then(function(result){
-        if(result.isEmpty()){
-            daouser.isUserCorrect(request.body.email, request.body.pass, (err, result)=>{
-                if(err) {
-                    
-                    response.render("login", {errorMSG: err.message});
-                }
-                else{
-                    request.session.loggedUser = request.body.email;
-                    response.redirect("main.html");
-                }
-            })
-            result.array().push("Contraseña o email incorrectos");
-            response.render("login", {errorMSG: result.array() });
+app.get("/task", (request, response) => {
+    daotask.getAllTasks(request.session.currentUser, (error, tasks) => {
+        if (error) {
+            console.log(error); response.end();
+        } else {
+            console.log(tasks);
+            response.render("tasks", { taskList: tasks, user: request.session.currentUser })
         }
-        else{
-            console.log(result.array());
-            response.render("login", {errorMSG: result.array()});  
+    })
+})
+
+app.post("/login", (request, response) => {
+
+    daouser.isUserCorrect(request.body.email, request.body.pass, (err, result) => {
+        if (err) {
+            response.render("login", { errorMSG: "usuario o contraseña incorrectos" });
+        }
+        else {
+            request.session.currentUser = request.body.email;
+            response.redirect("task");
+        }
+    })
+});
+
+app.get("/logout", (request, response) => {
+    request.session.destroy();
+    response.redirect("login");
+})
+
+function comprobar(request, response, next) {
+    if (request.session.currentUser) {
+        response.locals.userEmail = request.body.mail;
+        next();
+    } else {
+        response.redirect("login");
+    }
+}
+
+app.post("/finalizar", (request, response) => {
+    let task = request.body.id;
+    daotask.markTaskDone(Number(task), (error, tasks) => {
+        if (error) { console.log(error); response.end(); }
+        else {
+            response.redirect("/tasks");
+        }
+    })
+
+});
+
+app.post("/anadirTask", (request, response) => {
+    let task = taskUtils.createTask(request.body.taskText);
+    task.done = 0;
+    daotask.insertTask(request.session.currentUser, task, (error, tasks) => {
+        if (error) { console.log(error); response.end(); }
+        else {
+            response.redirect("/tasks");
+        }
+    })
+})
+
+app.get("/deleteCompleted", (request, response) => {
+    daotask.deleteCompleted(request.session.currentUser, (error) => {
+        if (error) { console.log(error); response.end(); }
+        else {
+            response.redirect("/tasks");
         }
     });
-});
+})
+
+app.use(comprobar);
+
 
 app.listen(config.port, function (err) {
     if (err) {
@@ -85,4 +134,4 @@ app.listen(config.port, function (err) {
         console.log(`Servidor escuchando en puerto ${config.port}.`);
     }
 });
-    
+

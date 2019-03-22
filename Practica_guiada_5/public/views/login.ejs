@@ -13,23 +13,21 @@
             <h1>GESTIÓN DE TAREAS</h1>
         </div>
     </header>
-        <div class="container">
-            <form method="POST" action="/login">
-                <label type="text">Direccion de correo: </label>
-                <input type="text" name="email" placeholder="Email" required><br><br>
-                <label type="text">Contraseña:</label>
-                <input type="text" name="pass" placeholder="pass" required><br><br>
-                <% if (errorMSG) { %>
-                    <div class="error">
-                        <% errorMSG.forEach(p =>{ %>
-                            <li><%= p.msg %></li>
-                        <% }) %>
-                    </div>
-                  <% } %>
-                <button type="submit">Entrar</button>
-            </form>
-            
-        </div>
+    <div class="container">
+        <form method="POST" action="/login">
+            <label type="text">Direccion de correo: </label>
+            <input type="text" name="email" placeholder="Email" required><br><br>
+            <label type="text">Contraseña:</label>
+            <input type="text" name="pass" placeholder="pass" required><br><br>
+            <% if (errorMSG) { %>
+            <div class="error">
+                <li><%= errorMSG %></li>
+            </div>
+            <% } %>
+            <button type="submit">Entrar</button>
+        </form>
+
+    </div>
 </body>
 
 </html>
