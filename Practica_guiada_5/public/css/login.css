@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css?family=Sniglet');
+@import url('https://fonts.googleapis.com/css?family=Margarine');
+
+*{
+    font-family: 'Sniglet', cursive;
+    top: 0;
+    margin: 0;
+}
+
+body{
+    background-image: url("../img/fondo.jpg");
+}
+
+
+.nav{
+    
+    position: fixed;
+    z-index: 1000000;
+    width: 100%;
+    background-color: white;
+    text-align: center;
+    flex-shrink: 0;
+    border-bottom: 4px solid black;
+}
+
+
+h1{
+    font-size: 60px;
+    color:red;
+    font-family: 'Margarine', cursive !important;
+    
+}
+
+.right{
+    width: 30%;
+}
+
+.ident{
+    display: flex;
+    flex-direction: row;
+}
+
+.ideLeft{
+    
+    width: 25%;
+}
+
+.ideRight{
+    width: 75%;
+    text-align: center;
+}
+
+img{
+    width: 130px;
+    height: 130px;
+    margin-top: 5px;
+    margin-left: 50px;
+}
+
+.container{
+    width: 800px;
+    height: 500px;
+    border:2px solid black;
+    border-radius: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 300px;
+    margin-bottom: 300px;
+    background-color: white;
+}
+
+form{
+    margin-top: 100px;
+    margin-left: 80px;
+    font-size: 30px;
+}
+
+input[type="text"]{
+    width: 50%;
+}
+
+button{
+    width: 200px;
+    height: 80px;
+    border:2px solid black;
+    border-radius: 20px;
+    margin-left: 200px;
+}
+
+.error{
+    width: 500px;
+    height: auto;
+    font-size: 15px;
+    background-color: #e77575;
+    padding: 10px;
+    margin-bottom: 50px;
+}
+
+li{
+    list-style: none;
+}
