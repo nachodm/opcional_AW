@@ -4,7 +4,7 @@
 <header>
     <title>Gestión de tareas</title>
     <meta charset="utf-8" />
-    <link href="print.css" rel="stylesheet">
+    <link href="main.css" rel="stylesheet">
     <link rel="shortcut icon" href="favicon.jpg">
 
 </header>
@@ -31,66 +31,51 @@
 
     <div class="container">
         <div class="box">
-            <h1> Lista de Tareas</h1>
+            <h1 class="listaTareas"> Lista de Tareas</h1>
             <ul>
                 <li>
                     <div class="li">
-                        <div class="tagName">
-                            <p>Preparar práctica Aw</p>
-                        </div>
-                        <div class="tags">
-                            <div class="awTag">
-                                AW
-                            </div>
-                            <div class="personalTag">
-                                Personal
-                            </div>
-                            <div>
-                                <button>Finalizar</button>
-                            </div>
+                        <div>
+                            <strong>Preparar practica AW</strong>
+                            <span class="yellowtags">AW</span>
+                            <span class="yellowtags">practica</span></div>
+                        <div>
+                            <a class="brownbutton" href="#">
+                                <span> Marcar finalizada</span></a>
                         </div>
                     </div>
                 </li>
-                <li><strike>
-                        <p>Mirar Fechas Congreso</p>
-                    </strike></li>
+                <li><span class="tachado"><strong><strike>Mirar fechas congreso</strike></strong></span></li>
                 <li>
                     <div class="li">
-                        <div class="tagName">
-                            <p>Ir al Supermercado</p>
-                        </div>
-                        <div class="tags">
-                            <div class="personalTag">
-                                Personal
-                            </div>
-                            <div>
-                                <button>Finalizar</button>
-                            </div>
+                        <div>
+                            <strong>Ayudar en la compra a mama</strong>
+                            <span class="yellowtags">familiar</span>
+                            <span class="yellowtags">personal</span></div>
+                        <div>
+                            <a class="brownbutton" href="#">
+                                <span> Marcar finalizada</span></a>
                         </div>
                     </div>
                 </li>
                 <li>
                     <div class="li">
-                        <div class="tagName finalizada">
-                            <p>Mudanza</p>
-                        </div>
-                        <div class="tags">
-                            <div class="personalTag">
-                                Personal
-                            </div>
-                            <div>
-                                <button>Finalizar</button>
-                            </div>
+                        <div>
+                            <strong>Ayudar en la mudanza</strong>
+                            <span class="yellowtags">personal</span></div>
+                        <div>
+                            <a class="brownbutton" href="#">
+                                <span> Marcar finalizada</span></a>
                         </div>
                     </div>
+                </li>
+                <li>
+                    <input type="text" name="add_item" id="inputBar"><a class="brownbutton" href="#">Añadir</a> 
+                </li>
+                <li>
+                    <a class="eliminar" href="#">Eliminar tareas completadas</a>
                 </li>
             </ul>
-
-            <form method="POST" action="aniadir">
-                <input type="text" placeholder="Añadir tarea nueva" name="texto">
-                <button type="submit">Añadir</button>
-            </form>
-            <button class="estiloboton">Eliminar Tareas</button>
         </div>
     </div>
 </body>
