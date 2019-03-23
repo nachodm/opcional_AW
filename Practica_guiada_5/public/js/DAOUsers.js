@@ -39,10 +39,11 @@ class DAOUsers{
             conn.query("SELECT img FROM user WHERE email = ?", [email], (err, row)=>{
                 conn.release();
                 if(err){
-                    callback("Error de acceso a la BBDD");
+                    callback("Error de acceso a la BBDD", null);
                 }
                 else {
-                    callback(undefined, row[0]);
+                    console.log(row[0]);
+                    callback(null, row[0]);
                 }
             });
         });

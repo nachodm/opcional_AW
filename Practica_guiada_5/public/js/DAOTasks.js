@@ -22,7 +22,7 @@ class DAOTasks{
                     callback("Error de acceso a la BBDD");
                 }
                 var arrayResponse = [];
-                
+                console.log(rows);
                 rows.forEach(p => {
                     if(arrayResponse.length > 0 && checkID(p.id, arrayResponse)){
                         var pos = getObject(p.id, arrayResponse);
@@ -36,6 +36,7 @@ class DAOTasks{
                             tag: []
                         };
                         object.tag.push(p.tag);
+                        
                         arrayResponse.push(object);
                     }
                 });
@@ -99,12 +100,13 @@ class DAOTasks{
             })
         })
     }
+
+    
 }
 
 function checkID(id, arrayResponse){
     var encontrado = false;
     var i = 0; 
-    console.log(arrayResponse[0]);
     while(!encontrado && i <arrayResponse.length){
         if(arrayResponse[i].id == id) return true;
         ++i;

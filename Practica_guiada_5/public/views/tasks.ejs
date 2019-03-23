@@ -22,7 +22,11 @@
                 <div class="ideRight">
                     <h3> <%= user %> </h3>
                     <a>
-                        <h2><a class="action_button" href="/logout">DESCONECTAR</a></h2>
+                        <h2>
+                            <form method="POST" action="/logout">
+                                <button class="brownbutton" >DESCONECTAR</button>
+                            </form>
+                        </h2>
                     </a>
                 </div>
             </div>
@@ -35,25 +39,41 @@
             <ul>
                 <% if (tareas) { %>
 
-                <% tareas.forEach(p =>{ %>
-                <li>
-                    <div class="li">
-                        <strong><%= p.text %></strong>
-                        <% p.tag.forEach( k=>{ %>
-                        <span class="yellowtags"><%= k %></span>
-                        <% }); %>
-                        <a class="brownbutton" href="#">
-                            <span> Marcar Finalizada</span>
-                        </a>
-                    </div>
-                </li>
-                <% }) %>
+                    <% tareas.forEach(p =>{ %>
+                        <% if(p.done === 1) { %>
+                        <li>
+                            <div class="li">
+                                <span class="finalizada"><%= p.text %></span>
+                            </div>
+                        </li>
+                        <%} else { %>
+                        <li>
+                            <div class="li">
+                                <strong><%= p.text %></strong>
+                                <% p.tag.forEach( k=>{ %>
+                                <span class="yellowtags"><%= k %></span>
+                                <% }); %>
+                                <form method="POST" action="/finalizar">
+                                    <button type="submit" class="brownbutton">
+                                        <span> Marcar Finalizada</span>
+                                        <input type="hidden" name="id" value="<%= p.id %>">
+                                    </button>
+                                </form>
+                            </div>
+                        </li>
+                        <% } %>
+                    <% }) %>
                 <% } %>
                 <li>
-                    <input type="text" name="add_item" id="inputBar"><a class="brownbutton" href="#">Añadir</a>
+                    <form method="POST" action="/addTask">
+                        <input type="text" name="text" id="inputBar">
+                        <button type="submit" class="brownbutton">Añadir</button>
+                    </form>
                 </li>
                 <li>
-                    <a class="eliminar" href="#">Eliminar tareas completadas</a>
+                    <form method="POST" action="/deleteCompleted">
+                        <button class="brownbutton eliminarTareas" type="submit">Eliminar tareas completadas</button>
+                    </form>
                 </li>
 
             </ul>

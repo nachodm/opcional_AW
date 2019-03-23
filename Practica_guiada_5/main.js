@@ -59,7 +59,6 @@ app.get("/task", (request, response) => {
         if (error) {
             console.log(error); response.end();
         } else {
-
             response.render("tasks", { tareas: tareas, user: request.session.currentUser })
         }
     })
@@ -78,7 +77,7 @@ app.post("/login", (request, response) => {
     })
 });
 
-app.get("/logout", (request, response) => {
+app.post("/logout", (request, response) => {
     request.session.destroy();
     response.redirect("login");
 })
@@ -97,30 +96,51 @@ app.post("/finalizar", (request, response) => {
     daotask.markTaskDone(Number(task), (error, tasks) => {
         if (error) { console.log(error); response.end(); }
         else {
-            response.redirect("/tasks");
+            response.redirect("task");
         }
     })
 
 });
 
-app.post("/anadirTask", (request, response) => {
-    let task = taskUtils.createTask(request.body.taskText);
-    task.done = 0;
+app.post("/addTask", (request, response) => {
+    let task = {
+        text: request.body.text,
+        done: 0,
+        tag: []
+    }
+    task.tag.push("personal");
     daotask.insertTask(request.session.currentUser, task, (error, tasks) => {
-        if (error) { console.log(error); response.end(); }
+        if (error) { callback(undefined, false); response.end(); }
         else {
-            response.redirect("/tasks");
+            response.redirect("task");
         }
     })
 })
 
-app.get("/deleteCompleted", (request, response) => {
+app.post("/deleteCompleted", (request, response) => {
     daotask.deleteCompleted(request.session.currentUser, (error) => {
-        if (error) { console.log(error); response.end(); }
+        if (error) { callback(undefined, false); response.end(); }
         else {
-            response.redirect("/tasks");
+            response.redirect("task");
         }
     });
+})
+
+app.get("/imagenUsuario", (request, response) =>{
+    daouser.getUserImageName(request.session.currentUser), (error, result) =>{
+        console.log(result);
+        if (error){
+
+        }
+        else{
+            if(!result){
+                response.sendFile(path.join(__dirname,"public/img","/NoPerfil.png"));
+            }
+            else{
+                response.sendFile(path.join(__dirname,"public/img","/perfil.png"));
+            }
+        }
+    }
 })
 
 app.use(comprobar);

@@ -74,7 +74,7 @@ h3{
     font-size: 25px;
 }
 
-a:hover{
+a:hover, button:hover{
     cursor: pointer;
     color: red;
 }
@@ -82,6 +82,10 @@ a:hover{
 .container{
     margin-top: 300px;
 
+}
+
+.finalizada{
+    text-decoration:line-through;
 }
 
 .box{
@@ -98,7 +102,7 @@ a:hover{
     display: flex;
     flex-direction: row;
 }
-li, .estiloboton, form{
+li, .estiloboton{
     opacity: 0.95;
     background-color: #da5b5b;
     list-style: none;
@@ -171,12 +175,6 @@ button{
     margin-left: 200px;
     text-align: center;
 }
-
-
-button:hover{
-    padding: 12px;
-}
-
 .tagname .finalizada{
     opacity: 0.5 !important;
 }
@@ -220,4 +218,10 @@ a{
     font-size: 25px;
     padding: 10px;
     color: black;
+}
+
+.eliminarTareas{
+    width: 300px;
+    font-size: 20px;
+    margin-left: 200px;
 }
