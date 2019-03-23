@@ -8,7 +8,7 @@
 }
 
 body{
-    background-image: url("fondo.jpg");
+    background-image: url("../img/fondo.jpg");
 }
 
 .nav{
@@ -212,7 +212,6 @@ input[type=text]{
 
 a{
     text-decoration: none;
-    color: white;
 }
 
 .eliminar{
@@ -220,4 +219,5 @@ a{
     border-radius: 20px;
     font-size: 25px;
     padding: 10px;
+    color: black;
 }

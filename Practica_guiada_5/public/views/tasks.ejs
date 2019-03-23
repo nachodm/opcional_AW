@@ -31,86 +31,35 @@
 
     <div class="container">
         <div class="box">
-            <h1> Lista de Tareas</h1>
+            <h1 class="listaTareas"> Lista de Tareas</h1>
             <ul>
-                <% if(tareas) { %>
+                <% if (tareas) { %>
 
-                    <% tareas.forEach(p => { %>
-
-                        <li>
-                            <div class="li">
-                                <div class="tagName">
-                                    <p><%= p.text %></p>
-                                </div>
-                                <div class="awT">
-                                    <p><%= p.tag%></p>
-                                </div>
-                            </div>
-                        </li>
-
-                    })
-
-                }
+                <% tareas.forEach(p =>{ %>
                 <li>
                     <div class="li">
-                        <div class="tagName">
-                            <p>Preparar práctica Aw</p>
-                        </div>
-                        <div class="tags">
-                            <div class="awTag">
-                                AW
-                            </div>
-                            <div class="personalTag">
-                                Personal
-                            </div>
-                            <div>
-                                <button>Finalizar</button>
-                            </div>
-                        </div>
+                        <strong><%= p.text %></strong>
+                        <% p.tag.forEach( k=>{ %>
+                        <span class="yellowtags"><%= k %></span>
+                        <% }); %>
+                        <a class="brownbutton" href="#">
+                            <span> Marcar Finalizada</span>
+                        </a>
                     </div>
                 </li>
-                <li><strike>
-                        <p>Mirar Fechas Congreso</p>
-                    </strike></li>
+                <% }) %>
+                <% } %>
                 <li>
-                    <div class="li">
-                        <div class="tagName">
-                            <p>Ir al Supermercado</p>
-                        </div>
-                        <div class="tags">
-                            <div class="personalTag">
-                                Personal
-                            </div>
-                            <div>
-                                <button>Finalizar</button>
-                            </div>
-                        </div>
-                    </div>
+                    <input type="text" name="add_item" id="inputBar"><a class="brownbutton" href="#">Añadir</a>
                 </li>
                 <li>
-                    <div class="li">
-                        <div class="tagName finalizada">
-                            <p>Mudanza</p>
-                        </div>
-                        <div class="tags">
-                            <div class="personalTag">
-                                Personal
-                            </div>
-                            <div>
-                                <a class="action_button" href="/finalizar">Finalizar</a>
-                            </div>
-                        </div>
-                    </div>
+                    <a class="eliminar" href="#">Eliminar tareas completadas</a>
                 </li>
+
             </ul>
-
-            <form method="POST" action="aniadir">
-                <input type="text" placeholder="Añadir tarea nueva" name="texto">
-                <a class="action_button" href="/anadirTask">Añadir </a> 
-            </form>
-            <button class="estiloboton">Eliminar Tareas</button>
         </div>
     </div>
+
 </body>
 
 </html>

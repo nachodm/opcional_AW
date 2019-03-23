@@ -55,12 +55,12 @@ app.get("/login", (request, response) => {
 })
 
 app.get("/task", (request, response) => {
-    daotask.getAllTasks(request.session.currentUser, (error, tasks) => {
+    daotask.getAllTasks(request.session.currentUser, (error, tareas) => {
         if (error) {
             console.log(error); response.end();
         } else {
-            console.log(tasks);
-            response.render("tasks", { taskList: tasks, user: request.session.currentUser })
+
+            response.render("tasks", { tareas: tareas, user: request.session.currentUser })
         }
     })
 })

@@ -24,16 +24,22 @@ class DAOTasks{
                 var arrayResponse = [];
                 
                 rows.forEach(p => {
-                    var object = {
-                        id : p.id,
-                        text: p.text,
-                        done: p.done,
-                        tag: p.tag
-                    };
-                    arrayResponse.push(object);
+                    if(arrayResponse.length > 0 && checkID(p.id, arrayResponse)){
+                        var pos = getObject(p.id, arrayResponse);
+                        arrayResponse[pos].tag.push(p.tag);
+                    }
+                    else{
+                        var object = {
+                            id : p.id,
+                            text: p.text,
+                            done: p.done,
+                            tag: []
+                        };
+                        object.tag.push(p.tag);
+                        arrayResponse.push(object);
+                    }
                 });
-                callback(undefined, arrayResponse);
-                
+                callback(undefined, arrayResponse); 
             });
         })
     }
@@ -95,4 +101,23 @@ class DAOTasks{
     }
 }
 
+function checkID(id, arrayResponse){
+    var encontrado = false;
+    var i = 0; 
+    console.log(arrayResponse[0]);
+    while(!encontrado && i <arrayResponse.length){
+        if(arrayResponse[i].id == id) return true;
+        ++i;
+    }
+    return false;
+}
+
+function getObject(id, arrayResponse){
+    var i = 0;
+    while(i < arrayResponse.length){
+        if(arrayResponse[i].id == id) return i;
+        ++i;
+    }
+    return null;
+}
 module.exports = DAOTasks;
