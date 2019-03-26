@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<header>
+    <title>Gestión de tareas</title>
+    <meta charset="utf-8" />
+    <link href="../css/tasks.css" rel="stylesheet">
+    <link rel="shortcut icon" href="favicon.jpg">
+
+</header>
+
+<body>
+    <header class="nav">
+        <div class="left">
+            <h1>GESTIÓN DE TAREAS</h1>
+        </div>
+        <div class="right">
+            <div class="ident">
+                <div class="ideLeft">
+                    <img src="/imagenUsuario" alt="Foto usuario">
+                </div>
+                <div class="ideRight">
+                    <h3> <%= user %> </h3>
+                    <a>
+                        <h2>
+                            <form method="POST" action="/logout">
+                                <button class="brownbutton">DESCONECTAR</button>
+                            </form>
+                        </h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="box">
+            <h1 class="listaTareas"> Lista de Tareas</h1>
+            <ul>
+                <% if (tareas) { %>
+
+                <% tareas.forEach(p =>{ %>
+
+                <li>
+                    <div class="li">
+                        <span class="finalizada"><%= p.text %></span>
+                    </div>
+                </li>
+                <li>
+                    <div class="li">
+                        <strong><%= p.text %></strong>
+                        <form method="POST" action="/finalizar">
+                            <button type="submit" class="brownbutton">
+                                <span> Marcar Finalizada</span>
+                                <input type="hidden" name="id" value="<%= p.id %>">
+                            </button>
+                        </form>
+                    </div>
+                </li>
+                <% }) %>
+                <% } %>
+                <li>
+                    <form method="POST" action="/addTask">
+                        <input type="text" name="text" id="inputBar">
+                        <button type="submit" class="brownbutton">Añadir</button>
+                    </form>
+                </li>
+                <li>
+                    <form method="POST" action="/deleteCompleted">
+                        <button class="brownbutton eliminarTareas" type="submit">Eliminar tareas completadas</button>
+                    </form>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>
