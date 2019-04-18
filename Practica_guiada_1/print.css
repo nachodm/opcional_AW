@@ -1,27 +1,23 @@
-
-.nav{
+header, .brownbutton, #search, #delete {
     display: none;
 }
-
-button{
-    display: none;
+.yellowtags:before {
+    content: '( ';
 }
 
-.li{
-    display: flex;
-    flex-direction: row;
+.yellowtags:after {
+    content: ' )';
 }
 
-.tags{
-    display: flex;
-    flex-direction: row;
-}
-ul{
-    list-style-type: disc;
+ul li {
+    font-size: 12px;
+    padding-top: 5px;
 }
 
+.del {
+    margin-left: 10px;
+}
 
-
-form{
-    display:none;
+.listaTareas {
+    font-size: 18px;
 }

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<header>
+<head>
     <title>Gestión de tareas</title>
     <meta charset="utf-8" />
-    <link href="main.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="tasks.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="print.css" media="print">
     <link rel="shortcut icon" href="favicon.jpg">
-
-</header>
+</head>
 
 <body>
     <header class="nav">
@@ -15,15 +15,15 @@
             <h1>GESTIÓN DE TAREAS</h1>
         </div>
         <div class="right">
-            <div class="ident">
-                <div class="ideLeft">
-                    <img src="índice.png" alt="Foto usuario">
-                </div>
-                <div class="ideRight">
+            <div class="ideLeft">
+                <img src="índice.png" alt="Foto usuario">
+            </div>
+            <div class="ideRight">
+                <div>
                     <h3> usuario@gmail.com </h3>
-                    <a>
-                        <h2> DESCONECTAR</h2>
-                    </a>
+                </div>
+                <div>
+                    <h2><a id="logout">DESCONECTAR</a></h2> 
                 </div>
             </div>
         </div>
@@ -31,48 +31,42 @@
 
     <div class="container">
         <div class="box">
-            <h1 class="listaTareas"> Lista de Tareas</h1>
+            <h2 class="listaTareas">Lista de tareas</h2>
             <ul>
                 <li>
-                    <div class="li">
-                        <div>
-                            <strong>Preparar practica AW</strong>
-                            <span class="yellowtags">AW</span>
-                            <span class="yellowtags">practica</span></div>
-                        <div>
-                            <a class="brownbutton" href="#">
-                                <span> Marcar finalizada</span></a>
-                        </div>
+                    <div>
+                        <strong>Preparar practica AW</strong>
+                        <span class="yellowtags">AW</span>
+                        <span class="yellowtags">practica</span></div>
+                    <div>
+                        <a class="brownbutton" href="#">
+                            <span> Marcar finalizada</span></a>
                     </div>
                 </li>
-                <li><span class="tachado"><strong><strike>Mirar fechas congreso</strike></strong></span></li>
+                <li class="del"><strong><del>Mirar fechas congreso</del></strong></li>
                 <li>
-                    <div class="li">
-                        <div>
-                            <strong>Ayudar en la compra a mama</strong>
-                            <span class="yellowtags">familiar</span>
-                            <span class="yellowtags">personal</span></div>
-                        <div>
-                            <a class="brownbutton" href="#">
-                                <span> Marcar finalizada</span></a>
-                        </div>
+                    <div>
+                        <strong>Ayudar en la compra a mama</strong>
+                        <span class="yellowtags">familiar</span>
+                        <span class="yellowtags">personal</span></div>
+                    <div>
+                        <a class="brownbutton" href="#">
+                            <span> Marcar finalizada</span></a>
                     </div>
                 </li>
                 <li>
-                    <div class="li">
-                        <div>
-                            <strong>Ayudar en la mudanza</strong>
-                            <span class="yellowtags">personal</span></div>
-                        <div>
-                            <a class="brownbutton" href="#">
-                                <span> Marcar finalizada</span></a>
-                        </div>
+                    <div>
+                        <strong>Ayudar en la mudanza</strong>
+                        <span class="yellowtags">personal</span></div>
+                    <div>
+                        <a class="brownbutton" href="#">
+                            <span> Marcar finalizada</span></a>
                     </div>
                 </li>
-                <li>
+                <li id="search">
                     <input type="text" name="add_item" id="inputBar"><a class="brownbutton" href="#">Añadir</a> 
                 </li>
-                <li>
+                <li id="delete">
                     <a class="eliminar" href="#">Eliminar tareas completadas</a>
                 </li>
             </ul>
